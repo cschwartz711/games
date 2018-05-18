@@ -1,0 +1,60 @@
+#!/usr/bin/python
+
+# LOTTO GAME
+# User chooses 5 numbers.
+# 5 winning numbers get chosen randomly between 1 & 10.
+# Comparing the user numbers and winning numbers 
+# the game gives you the number you guessed correct 
+
+from random import randint
+import webbrowser
+
+your_numbers = []
+choice = 1
+g = 5
+print "CHOOSE FIVE NUMBERS BETWEEN 1 & 10"
+while g != 0:
+	guess = int(raw_input("Choice %d: " % (choice)))
+	if guess in your_numbers:
+		print "You already chose that number, guess again"
+	elif guess < 1 or guess >10:
+		print "Please choose a number between 1 & 10!!!"
+	else:
+		your_numbers.append(guess)
+		g-=1
+		choice+=1
+your_numbers.sort()
+print "You're numbers", your_numbers
+
+
+winning_numbers = []
+
+n = 5
+
+while n != 0:
+	number = randint(1,10)
+	if number not in winning_numbers:
+		winning_numbers.append(number)
+		n -= 1
+winning_numbers.sort()
+print "Winning numbers", winning_numbers
+
+#your_numbers = winning_numbers
+
+correct = 0
+for i in your_numbers:
+	if i in winning_numbers:
+		correct += 1
+if correct == 0:
+	print "WOW you are terrible at picking numbers!"
+elif correct == 1:
+	print "You got %d right, gotta start somewhere..." % (correct)
+elif correct == 2:
+	print "You got %d right, anyone can do that!" % (correct)
+elif correct == 3:
+	print "You got %d right, not bad, here's $5!" % (correct)
+elif correct == 4:
+	print "Wow! How does it feel to barely lose?? Here's $10"
+elif correct == 5:
+	print "CONGRATULATIONS YOU PICKED ALL 5 NUMBERS RIGHT!!!! YOU WIN $1 MILLION FAKE DOLLARS!!!"
+	
